@@ -1,0 +1,198 @@
+<!-- Resources referenced
+- https://www.w3schools.com/howto/howto_css_searchbar.asp
+- https://www.w3schools.com/html/html_forms.asp
+- https://www.w3schools.com/html/html_form_elements.asp
+- https://dev.cognitive.microsoft.com/docs/services/8336afba49a84475ba401758c0dbf749/operations/56b4433fcf5ff8098cef380c
+- https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/overview
+- https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/tutorial-bing-image-search-single-page-app#manage-and-store-user-subscription-keys
+- https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
+- https://xhr.spec.whatwg.org/
+- https://www.w3schools.com/jsref/met_document_createelement.asp
+- https://www.geeksforgeeks.org/how-to-create-an-image-element-dynamically-using-javascript/
+- https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+- https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/prepend
+- https://colorhunt.co/palette/169452
+- https://stackoverflow.com/questions/16025138/call-two-functions-from-same-onclick
+- https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+- https://designshack.net/articles/css/12-fun-css-text-shadows-you-can-copy-and-paste/
+- https://joshtronic.com/2016/02/14/how-to-capitalize-the-first-letter-in-a-string-in-javascript/
+- https://concept.research.microsoft.com/Home/API 
+- Trevor's mirrored version of Microsoft Concepts API.
+- https://blog.abelotech.com/posts/split-string-into-tokens-javascript/
+- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_trigger_button_enter
+-->
+
+
+<html>
+    <head>
+        <title>Image Search</title>
+        <link rel="stylesheet" type="text/css" href="home.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script src="https://kit.fontawesome.com/c713117347.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Cabin|Caveat&display=swap" rel="stylesheet">
+    
+    <body>
+        <!-- User input for search query -->
+        <div class="header"> Your personalized collection</div>
+        <div class="topnav">
+            <input type="text" id="query" placeholder="Search Images" value="">
+            <button type=submit id="submit-btn" onclick="submitRelated(); submitReq();"><i class="fas fa-search"></i></button>
+            <div class="searchoptions">
+                Show <select id="count">
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                Results
+            </div>
+            <button onclick=clearResults()>Clear Search Results</button>
+            <button onclick=clearPins()>Clear Favourites</button>
+        </div>
+
+        <div class=relatedsearch id="related"></div>
+
+        <h1><i class="fas fa-star"></i></i> Your Favourites</h1>
+        <div class="pinnedbox" id="pinned">
+        </div>
+
+        <h1><i class="fas fa-search"></i> Search Results</h1>
+        <div class="searchbox" id="search">
+        </div>
+        
+
+        <script>
+        // search on enter
+        var input = document.getElementById("query");
+        input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("submit-btn").click();
+        }
+        });
+
+        // clear search results
+        function clearImgs(element) {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild)
+            }            
+        }
+
+        function clearResults() {
+            var searchresults = document.getElementById('search')
+            clearImgs(searchresults)
+            }            
+        
+        function clearPins() {
+            var pinned = document.getElementById('pinned')
+            clearImgs(pinned)
+            } 
+
+        // Submit search query to JS
+        function submitReq() {
+            var query = document.getElementById("query").value;
+            
+            if (query) {
+                var oReq = new XMLHttpRequest();
+                oReq.addEventListener("load", reqListener);
+                
+                var count = document.getElementById("count").value;
+                var offset = 0;
+                var mkt = 'en-us';
+                var url = `https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=${query}&count=${count}&offset=${offset}&mkt=${mkt}&safeSearch=Moderate`
+                
+                oReq.open("GET", url);
+                oReq.setRequestHeader("Ocp-Apim-Subscription-Key","fc1e440d7d7d4f28982d32fa983c02ec")
+                oReq.responseType='json';
+                oReq.send();
+            }   
+        }
+        
+        // display search results
+        function reqListener() {
+            clearResults()
+
+            var allresults = this.response.value;
+            // create each image 
+            allresults.forEach(singleresult => {
+                var img = document.createElement('img');
+                img.className = 'searchresults'
+                img.src = singleresult.contentUrl;
+                img.onclick = function() {
+                    var pinned = document.getElementById('pinned')
+                    img.onclick = function() {
+                        img.remove()
+                    }
+                    pinned.prepend(img)
+                    }
+                
+                var searchbox = document.getElementById('search');
+                searchbox.prepend(img);
+            })
+        }
+
+        // Related Search 
+        function submitRelated() {
+            // clear current suggestions
+            clearImgs(document.getElementById('related'))
+
+            // generate new suggestions using each word of the query
+            var query_split = document.getElementById("query").value.split(/\b\s+/);
+            var query = document.getElementById("query").value;
+
+            if (query) {
+                // get related terms to the full length query
+                var k = 10;
+                var oReq = new XMLHttpRequest();
+                oReq.addEventListener("load", relatedListener);
+                var url = `https://oydnv6aq1g.execute-api.us-east-1.amazonaws.com/prod/concepts?instance=${query}&topK=${k}`
+
+                oReq.open("GET", url);
+                oReq.responseType='json';
+                oReq.send();
+                
+                if (query_split.length > 1) {
+                    // get related terms to each word if longer than 1
+                    query_split.forEach(q => {
+                        var oReq = new XMLHttpRequest();
+                        oReq.addEventListener("load", relatedListener);
+                        var k = 3;
+                        
+                        var url = `https://oydnv6aq1g.execute-api.us-east-1.amazonaws.com/prod/concepts?instance=${q}&topK=${k}`
+                        oReq.open("GET", url);
+                        oReq.responseType='json';
+                        oReq.send();
+                    })
+                }
+            }
+        }
+        
+        // display search results
+        function relatedListener() {
+            var relatedresults = this.response;
+            for (var key in relatedresults) {
+                const div = document.createElement('div');
+                const cleaned_text = key.charAt(0).toUpperCase() + key.substring(1);
+                var text = document.createTextNode(cleaned_text)
+                div.appendChild(text)
+
+                div.onclick = function() {
+                    document.getElementById("query").value = div.innerText;
+                    submitReq();
+                    submitRelated();
+                }
+
+                var related = document.getElementById('related');
+                related.appendChild(div);
+            }
+        }
+        
+
+        </script>
+
+        
+
+    </body>
+</html>

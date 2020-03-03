@@ -1,0 +1,54 @@
+<!-- 
+References
+- https://stackoverflow.com/questions/8664486/javascript-code-to-stop-form-submission  -->
+
+
+<html>
+<head>
+  <title>Watch Party 2</title>
+  <link rel="stylesheet" type="text/css" href="/static/style.css"></link>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Watch Party 2</h1>
+        <h2>The Single Page Experience</h2>
+    </div>
+
+    <div class="create" id="create">
+        <h2>Create a new chat</h2>     
+        <form action="/api/create" method="post" onsubmit="create_chat(event, this)">
+            <label>Username: </label><input type="text" name="username" required>
+            <input type="submit" value="Create Chat"></p>
+        </form>       
+    </div>
+
+    <div class="join" id="join">
+        <h2>Join a chat</h2>     
+        <form action="/api/authenticate" method="post" onsubmit="join_chat(event, this)">
+            <label>Username: </label><input type="text" name="username" required>
+            <input type="hidden" id="join_chat_id" name="chat_id">
+            <input type="hidden" id="join_magic_key" name="magic_key">
+            <input type="hidden" id="existing_token" name="session_token">
+            <input type="submit" value="Join Chat"></p>
+        </form>       
+    </div>
+
+    <div id="chatpage">
+        <div class="magic_link" id="magic_link"></div>
+
+        <div class="chat" id="chat">
+        </div>
+        <div class="newpost" id="newpost">
+            <form action="/api/messages" method="post" onsubmit="post(event, this)">
+                <textarea class="textarea" id="textarea" name="textarea"></textarea>
+                <input class="submit" id="submitpost" type=submit>
+            </form>
+        </div>
+    </div>
+
+
+
+<script src="/static/script.js"></script>
+</body>
+</html>

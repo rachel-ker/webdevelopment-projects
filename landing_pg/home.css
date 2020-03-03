@@ -1,0 +1,324 @@
+body, p {
+  margin: 0;
+  font-family: "Source Sans Pro", "Helvetica", "Tahoma", sans-serif;
+}
+
+.bg-img {
+  margin: 0;
+  padding: 0;
+  background-image: url("https://burst.shopifycdn.com/photos/box-full-of-childrens-toys.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 75%;
+  width: 100%;
+  object-position: left;
+  position: relative; /* To position navbar */
+}
+
+.org {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  margin: 1% 2%;
+}
+
+h1 {
+  color: black;
+  margin: 2% 0%;
+}
+
+/* Navigation Bar */
+
+.nav-container {
+  display: none;
+  position: absolute;
+  margin: 1%;
+  width: 90%;
+}
+
+.nav {
+  overflow: hidden;
+}
+
+.nav a {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  padding: 2%;
+  float: right;
+}
+
+.nav a:hover {
+  border-bottom: 1px solid black;
+}
+
+
+/* Hero Image */
+
+.top-text {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  width: 75%;
+  transform: translate(-50%, -50%);
+}
+
+.img-headline {
+  color: white;
+  text-decoration: bold;
+  font-size: 150%;
+  text-shadow: 2px 2px black;
+}
+
+.img-text a {
+  color: white;
+  width: 60%;
+  padding: 1%;
+  margin: 3% auto;
+  text-decoration: none;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  display: block;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+  background-color: coral;
+  border: 2px solid coral;
+}
+
+.img-text a:hover {
+  background-color: white;
+  color:black
+}
+
+/* General Content */
+
+h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 300%;
+  text-align: center;
+  margin: 5% 15%;
+}
+
+/* Stats */
+
+.stats-container {
+  display: grid;
+  grid-template-columns: 1;
+  row-gap: 2%;
+  width: 70%;
+  margin: 5% auto;
+  padding: 10px;
+}
+
+.stats-item {
+  border: 5px solid #63b7af;
+  border-radius: 2px;
+  display: grid;
+  grid-template-rows: 120px 80px;
+}
+
+.stats-number {
+  text-align: center;
+  text-decoration: bold;
+  font-size: 500%;
+  padding-top: 5%;
+  color: #63b7af;
+}
+
+.stats-text {
+  text-align: center;
+  padding-top: 2%;
+  font-size: 150%;
+}
+
+/* Testimony */
+
+.testimony-section {
+  background-color: #fbceb5;
+  text-align: center;
+  padding: 3% 0%;
+}
+
+.testimony-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.single-testimony {
+  display: grid;
+  grid-template-rows: auto auto;
+  flex: auto;
+  max-width: 100%;
+  border-radius: 5px;
+  margin: 2%;
+  padding: 1%;
+  background-color: white;
+  opacity: 0.8;
+}
+
+.quote {
+  font-size: 300%;
+  color: #63b7af;
+}
+
+/* Wishes */
+
+.wish-section {
+  padding: 3%;
+  background-color: #63b7af;
+  margin: 0 auto;
+}
+
+.wishlist {
+  margin: auto;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  justify-content: center;
+}
+
+.single-wish {
+  flex: 100%;
+  width: 70%;
+  height: 90%;
+  padding: 0 4px;
+  margin: 1% 5%;
+  position: relative;
+  transition: .6s ease-out;
+}
+
+
+.single-wish:hover:before {
+  opacity: 1;
+}
+
+.single-wish:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 2;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.single-wish img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.wish-text {
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.single-wish:hover .wish-text {
+  opacity: 1;
+  text-align: center;
+  text-shadow: 2px 2px black;
+  color: white;
+  z-index: 3;
+}
+
+.browse-more a {
+  color: black;
+  width: 50%;
+  padding: 1%;
+  margin: 2% auto;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.browse-more a:hover {
+  border: 2px solid black;
+  width: 50%;
+}
+
+/* Footer */
+
+footer {
+  background-color: #35495e;
+  font-size: 55%;
+  height: 5%;
+  color: white;
+}
+
+.footer {
+  display: inline-block;
+}
+
+footer div {
+  margin: 3%;
+}
+
+footer a {
+  padding: 1%;
+}
+
+footer a:hover {
+  color: black;
+
+}
+
+
+
+/* Desktop */
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 200%;
+  }
+
+  .img-headline {
+    font-size: 500%;
+  }
+  
+  .img-text a {
+    width: 30%;
+    margin: 1% auto;
+    letter-spacing: 3px;
+  }
+
+  .nav-container {
+    display: inline-block;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2%;
+  }
+
+  .single-testimony {
+    max-width: 30%;
+  }
+
+  .single-wish {
+    flex: 20%;
+    height: 80%;
+    margin: 1%;
+  }
+
+  footer {
+    font-size: 100%;
+    height: 15%;
+  }
+}

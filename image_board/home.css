@@ -1,0 +1,126 @@
+body {
+    margin:0;
+}
+
+h1 {
+    font-family: 'Caveat', cursive;
+}
+
+.header {
+    padding-top: 3%;
+    height: 15%;
+    font-size: 400%;
+    letter-spacing: 3px;
+    color: black;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    background-image: url(https://images.unsplash.com/photo-1496867557017-559adb93b339?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1670&q=80);
+    background-position: center;
+}
+
+.topnav {
+    padding: 0% 1%;
+    background-color: #f0efef;
+    font-family: 'Cabin', cursive;
+}
+
+.topnav input {
+    display: inline-block;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 100%;
+}
+
+.topnav .searchoptions {
+    display: inline-block;
+    margin: 2%;
+    border-radius: 5px;
+}
+
+.topnav .searchoptions select {
+    font-size: 100%;
+    padding-bottom: 0;
+}
+
+.topnav button {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 100%;
+}
+
+.relatedsearch {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 120%;
+    height: 50px;
+    overflow: hidden;
+}
+
+.relatedsearch div {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    color: black;
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
+.relatedsearch div:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.searchbox {
+    margin: 0px 2%;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.searchresults {
+    max-width: 30%;
+    max-height: 300px;
+    opacity: 0.8;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+.pinnedbox {
+    margin: 0 2%;
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    justify-content: flex-start;
+}
+
+.searchresults:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+    .header {
+        font-size: 200%;
+    }
+    
+    .topnav {
+        padding: 2% 1%;
+        background-color: #f0efef;
+        font-family: 'Cabin', cursive;
+    }
+
+    .topnav input {
+        width: 85%;
+    }
+
+    .searchresults {
+        max-width: 100%;
+    }
+    }

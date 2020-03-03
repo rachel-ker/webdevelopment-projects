@@ -1,0 +1,47 @@
+body {
+    background-color: bisque;
+}
+
+/* chat box */
+.chat {
+    width: 80%;
+    margin: auto;
+    padding: 1%;
+    border-radius: 10px;
+    height: 500px;
+    background-color: white;
+    overflow: scroll;
+}
+
+.magic_link {
+    margin: 2%;
+}
+
+/* css for each post */
+.post {
+    padding: 5px;
+}
+
+/* containing textarea and submit button */
+.newpost {
+    border-radius: 5px;
+    width: 80%;
+    padding: 1%;
+    background-color: lightgrey;
+    margin: auto;
+}
+
+.textarea {
+    margin: 1% 5%;
+    padding: 1%;
+    border: 1px solid white;
+    border-radius: 20px;
+    width: 70%;
+}
+
+.submit {
+    display: inline;
+    padding: 2%;
+    margin: 1% 0%;
+
+}
