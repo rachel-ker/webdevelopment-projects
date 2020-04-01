@@ -1,0 +1,203 @@
+body, form {
+    margin: 0;
+}
+
+.usercreate, .userlogin, .updateusername, .updateemail, .userforgetpw, .createchannel, .resetpassword {
+    margin: 1% auto;
+    padding-bottom: 1%;
+    width: 50%;
+    text-align: center;
+    border: 3px solid #2a7886;
+    border-radius: 10px;
+    background-color: #79bac1;
+}
+
+.chatpage {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+/* side bar of channels */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: #2a7886;
+    height: 100%;
+    width: 25%;
+    overflow: scroll;
+}
+
+.unread_count {
+    background-color: grey;
+    border-radius: 50%;
+    padding: 1px 5px;
+    float: right;
+    font-size: small;
+}
+
+.unread_notif {
+    background-color: lightgrey;
+    text-align: center;
+    color: maroon;
+    font-size: small;
+}
+
+.chat_form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* buttons */
+.user_button, .channels {
+    background-color: inherit;
+    border: none;
+    margin-bottom: 2%;
+    text-align: left;
+    font-size: 15px;
+    overflow: hidden;
+    flex: 0 0 auto;
+}
+
+.logout_button {
+    background-color: inherit;
+    border: none;
+    float: right;
+    margin: 1%;
+}
+
+.add_channel {
+    background-color: inherit;
+    border: none;
+    margin: 0 2%;
+    padding: 0px 5px;
+    float: right;
+    font-size: 15px;
+}
+
+.delete_channel {
+    background-color: inherit;
+    border: none;
+    margin: 0 2%;
+    padding: 0px 5px;
+    float: right;
+}
+
+
+/* go back to chat, create account, back to log in, Forgot password */
+.bottombuttons {
+    font-size: inherit;
+    font-family: inherit;
+    border: 0;
+    padding: 0;
+    background-color: inherit;
+}
+
+.bottombuttons:hover{
+    text-decoration: underline;
+}
+
+/* username and email */
+.user_info {
+    margin: 5% 3% 5%;
+    border: 1px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+    flex: 0 0 auto;
+}
+
+.user_button:hover, .logout_button:hover, .add_channel:hover {
+    color: white;
+    opacity: 50%;
+}
+
+.channels:hover {
+    background-color: #79bac1;
+}
+
+.sidebar .user_info p {
+    margin: 1% auto 0%;
+}
+
+
+
+/* main chat page */
+.main_chat, .reply_page {
+    flex: 30%;
+}
+
+/* chat box */
+.chat, .reply_container {
+    width: 100%;
+    height: 90%;
+    overflow: scroll;
+}
+
+.current_channel, .replies {
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    height: 90%;
+}
+
+
+.channel_title {
+    border-bottom: 1px solid #2a7886;
+}
+
+.single_post {
+    display: flex;
+    flex-direction: column;
+}
+
+.post_button {
+    border: none;
+    text-align: left;
+}
+
+.post_pics {
+    max-height: 400px;
+    max-width: 400px;
+}
+
+.reply_button {
+    background-color: inherit;
+    border: none;
+    text-align: left;
+    margin-left: 2%;
+    text-decoration: underline;
+    color: blue;
+}
+
+/* containing textarea and submit button */
+.newpost {
+    float:right;
+    width: 100%;
+    height: 10%;
+    background-color: #2a7886;
+    margin: auto;
+}
+
+.textarea {
+    margin: 1% 0% 1% 5%;
+    padding: 1%;
+    border: 1px solid white;
+    border-radius: 20px;
+    width: 80%;
+    height: 70%;
+}
+
+
+/* replies */
+.reply {
+    font: 400 11px system-ui;
+}
+
+@media screen and (max-width: 800px) {
+    .chatpage {
+        display: block;
+    }
+    .sidebar {
+        width: 100%;
+    }
+  }
