@@ -8,14 +8,16 @@ Firstly, install the required packages.
 pip install -r requirements.txt
 ```
 
-* This app uses [SendGrid API](https://github.com/sendgrid/sendgrid-python) to reset passwords
+* This app uses [SendGrid API](https://github.com/sendgrid/sendgrid-python) to send emails that allows for the reset of passwords
+* Get your own sendgrid key if you don't already have one, and set up your own sendgrid.env 
 * Run the following code to set up SendGrid
 
 ```bash
 source ./sendgrid.env
 ```
+* Next, update the secrets.cfg file with your DB username, password and pepper you wish to use
 
-Finally, use the following code to set up the database from the files in the migrations folder in lexicographic order.
+* Finally, use the following code to set up the database from the files in the migrations folder in lexicographic order.
 ```bash
 sudo mysql -u root < <filename>.sql
 ```
